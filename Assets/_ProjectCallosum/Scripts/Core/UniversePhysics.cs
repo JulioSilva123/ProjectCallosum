@@ -47,6 +47,13 @@ namespace Assets._ProjectCallosum.Scripts.Core
         public static float ElectronRepulsionFactor = 10.0f;
 
 
+        // --- CONSTANTES DE PARTÍCULAS E SIMULAÇÃO ---
+        public const float ElectronMass = 9.109e-31f;      // Massa real do elétron
+        public const float ElectronLayerStep = 2.0f;       // Distância visual entre camadas na Unity
+        public const float VirtualNucleusChargeScale = 1000.0f; // Multiplicador para estabilidade orbital
+
+
+
         // Método para resetar tudo de uma vez
         public static void ResetToDefaults()
         {
