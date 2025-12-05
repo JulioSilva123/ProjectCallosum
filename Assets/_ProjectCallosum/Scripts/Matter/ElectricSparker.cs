@@ -72,7 +72,7 @@ namespace Assets._ProjectCallosum.Scripts.Matter
                 {
                     //Debug.Log($"Força no Elétron: {force:F2}");
                 }
-                Debug.Log($"Força no Elétron: {force:F2}");
+                //Debug.Log($"Força no Elétron: {force:F2}");
 
                 if (force > maxForce)
                 {
@@ -83,7 +83,10 @@ namespace Assets._ProjectCallosum.Scripts.Matter
 
             // DEBUG TEMPORÁRIO (Para calibrar)
             // Se a força for maior que 1, mostre no console para sabermos o valor
-             if (maxForce > 1.0f) Debug.Log($"Força Elétrica Atual: {maxForce}");
+            if (maxForce > 1.0f)
+            {
+                //Debug.Log($"Força Elétrica Atual: {maxForce}");
+            }
 
             if (maxForce > sparkThreshold)
             {

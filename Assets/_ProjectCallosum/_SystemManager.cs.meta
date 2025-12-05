@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 957b58cad1bef2841b46a19030e6b504
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - simulationContainer: {instanceID: 0}
+  - visualElectronPrefab: {fileID: 5984561311460939572, guid: 0c3e3f52f3c2ca64fb900bc7e7da1545, type: 3}
+  - panelInspector: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

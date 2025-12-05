@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._ProjectCallosum.Scripts.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -191,7 +192,9 @@ namespace Assets._ProjectCallosum.Scripts.Core
                 }
             }
 
-            Debug.Log("[Callosum] Universo limpo com sucesso!");
+
+            // AGORA (Mais limpo e colorido):
+            CallosumUtils.Log($"Universo limpo com sucesso!");
         }
 
 
@@ -203,7 +206,7 @@ namespace Assets._ProjectCallosum.Scripts.Core
 
 
 
-        float masterMult = sliderMaster.value;
+            float masterMult = sliderMaster.value;
 
 
             // --- CÁLCULO DA PROPORÇÃO REAL (A VERDADE CIENTÍFICA) ---

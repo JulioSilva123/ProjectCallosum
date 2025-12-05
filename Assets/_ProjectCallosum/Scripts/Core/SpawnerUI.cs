@@ -23,11 +23,17 @@ namespace Assets._ProjectCallosum.Scripts.Core
         [Header("Botões da Interface")]
         public Button btnProton;
         public Button btnNeutron;
+        public Button btnElectron; // <--- NOVO CAMPO
         public Button btnHydrogen;
         public Button btnHydrogenMol; // H2
         public Button btnHelium;
         public Button btnLithium;
         public Button btnBeryllium;
+
+
+
+
+
 
         void Start()
         {
@@ -52,6 +58,13 @@ namespace Assets._ProjectCallosum.Scripts.Core
 
             if (btnProton) btnProton.onClick.AddListener(() => spawnerScript.SpawnProton());
             if (btnNeutron) btnNeutron.onClick.AddListener(() => spawnerScript.SpawnNeutron());
+            // Conecta o novo botão
+            if (btnElectron) btnElectron.onClick.AddListener(() => spawnerScript.SpawnElectron());
+
+
+
+
+
 
             if (btnHydrogen) btnHydrogen.onClick.AddListener(() => spawnerScript.SpawnHydrogen());
             if (btnHydrogenMol) btnHydrogenMol.onClick.AddListener(() => spawnerScript.SpawnHydrogenMolecule());

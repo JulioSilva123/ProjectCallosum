@@ -57,7 +57,7 @@ namespace Assets._ProjectCallosum.Scripts.Matter
         {
 
 
-            Debug.Log($"Flavor do Elétron: {Flavor}");
+            //Debug.Log($"Flavor do Elétron: {Flavor}");
 
 
             //if (Flavor != ParticleFlavor.Electron) return;
@@ -66,7 +66,7 @@ namespace Assets._ProjectCallosum.Scripts.Matter
             Color targetColor = Color.white;
 
 
-            Debug.Log($"quantumSpin do Elétron: {_quantumSpin}");
+            //Debug.Log($"quantumSpin do Elétron: {_quantumSpin}");
 
 
             // SUAS CORES

@@ -32,7 +32,8 @@ namespace Assets._ProjectCallosum.Scripts.Core
 
             if (Input.GetKeyDown(KeyCode.P)) SpawnProton();
             if (Input.GetKeyDown(KeyCode.N)) SpawnNeutron();
-
+            // ... atalhos existentes ...
+            if (Input.GetKeyDown(KeyCode.E)) SpawnElectron(); // <--- NOVO ATALHO 'E'
 
 
             if (Input.GetKeyDown(KeyCode.H)) SpawnHydrogen();            
@@ -136,6 +137,30 @@ namespace Assets._ProjectCallosum.Scripts.Core
         public void SpawnProton() { if (upQuark != null) SpawnProtonCluster(transform.position); }
         public void SpawnNeutron() { if (upQuark != null) SpawnNeutronCluster(transform.position); }
 
+
+        // =========================================================
+        // NÍVEL 0: PARTÍCULAS ISOLADAS
+        // =========================================================
+
+        public void SpawnElectron()
+        {
+            if (electron == null) return;
+
+            // Cria um elétron livre em posição aleatória perto do centro
+            Vector3 pos = transform.position + UnityEngine.Random.insideUnitSphere * 2.0f;
+
+            // Usamos o método auxiliar que já existe no seu código
+            // Damos uma velocidade inicial pequena (Drift) para ele não ficar estático
+            SpawnElectronVector(pos - transform.position, UnityEngine.Random.insideUnitSphere * 2.0f);
+
+            Utils.CallosumUtils.LogColor("Elétron Livre Criado!", "yellow");
+        }
+
+
+
+
+
+
         private void SpawnProtonCluster(Vector3 c)
         {
             CreateParticle(upQuark, c); CreateParticle(upQuark, c); CreateParticle(downQuark, c);
@@ -144,12 +169,12 @@ namespace Assets._ProjectCallosum.Scripts.Core
         {
             CreateParticle(upQuark, c); CreateParticle(downQuark, c); CreateParticle(downQuark, c);
         }
-        private void CreateParticle(ParticleDefinition def, Vector3 pos)
-        {
-            GameObject obj = Instantiate(def.VisualPrefab, pos + UnityEngine.Random.insideUnitSphere * 0.2f, Quaternion.identity);
-            var s = obj.AddComponent<ElementaryParticle>();
-            s.Initialize(def.Family, def.Flavor, def.MassMeV, def.Charge);
-        }
+        //private void CreateParticle(ParticleDefinition def, Vector3 pos)
+        //{
+        //    GameObject obj = Instantiate(def.VisualPrefab, pos + UnityEngine.Random.insideUnitSphere * 0.2f, Quaternion.identity);
+        //    var s = obj.AddComponent<ElementaryParticle>();
+        //    s.Initialize(def.Family, def.Flavor, def.MassMeV, def.Charge);
+        //}
         //public void SpawnProton()
         //{
         //    if (upQuark == null || downQuark == null) return;
@@ -467,7 +492,32 @@ namespace Assets._ProjectCallosum.Scripts.Core
         //    CreateParticle(downQuark, center + new Vector3(-protonRadius, -protonRadius, 0));
         //}
 
-         
+
+
+        //private void SpawnElectronVector(Vector3 posOffset, Vector3 velocity)
+        //{
+        //    Vector3 finalPos = transform.position + posOffset;
+        //    GameObject eleObj = Instantiate(electron.VisualPrefab, finalPos, Quaternion.identity);
+        //    eleObj.name = "Electron";
+
+        //    var script = eleObj.AddComponent<ElementaryParticle>();
+        //    script.Initialize(electron.Family, electron.Flavor, electron.MassMeV, electron.Charge);
+        //    script.Velocity = velocity;
+
+
+        //    // --- NOVO: ATRIBUIÇÃO DE SPIN REAL ---
+        //    script.QuantumSpin = _nextSpin;
+
+        //    // Inverte para o próximo (Se era 1, vira -1. Se era -1, vira 1)
+        //    _nextSpin *= -1;
+
+        //    Debug.Log($"Elétron criado com Spin: {script.QuantumSpin}");
+
+        //}
+
+
+
+        // --- VOLTANDO PARA A VERSÃO SEGURA ---
 
         private void SpawnElectronVector(Vector3 posOffset, Vector3 velocity)
         {
@@ -475,25 +525,31 @@ namespace Assets._ProjectCallosum.Scripts.Core
             GameObject eleObj = Instantiate(electron.VisualPrefab, finalPos, Quaternion.identity);
             eleObj.name = "Electron";
 
+            // SEMPRE ADICIONA NOVO (Garante que não pega lixo zerado)
             var script = eleObj.AddComponent<ElementaryParticle>();
+
             script.Initialize(electron.Family, electron.Flavor, electron.MassMeV, electron.Charge);
             script.Velocity = velocity;
 
-
-            // --- NOVO: ATRIBUIÇÃO DE SPIN REAL ---
             script.QuantumSpin = _nextSpin;
-
-            // Inverte para o próximo (Se era 1, vira -1. Se era -1, vira 1)
             _nextSpin *= -1;
-
-            Debug.Log($"Elétron criado com Spin: {script.QuantumSpin}");
-
         }
 
-      
+        private void CreateParticle(ParticleDefinition template, Vector3 pos)
+        {
+            // Posição com leve aleatoriedade para não encavalar
+            GameObject newObj = Instantiate(template.VisualPrefab, pos + UnityEngine.Random.insideUnitSphere * 0.2f, Quaternion.identity);
+            newObj.name = template.ParticleName;
+
+            // SEMPRE ADICIONA NOVO
+            var script = newObj.AddComponent<ElementaryParticle>();
+
+            script.Initialize(template.Family, template.Flavor, template.MassMeV, template.Charge);
+        }
 
 
-        
+
+
         //// Método auxiliar simples
         //void SpawnElectronVector(Vector3 posOffset, Vector3 velocity)
         //{
@@ -506,7 +562,7 @@ namespace Assets._ProjectCallosum.Scripts.Core
 
 
 
-        
+
 
         // Método auxiliar para criar Próton em local específico
         void CreateProtonAt(Vector3 pos)

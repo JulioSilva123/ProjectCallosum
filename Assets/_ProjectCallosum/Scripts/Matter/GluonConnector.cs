@@ -93,7 +93,7 @@ namespace Assets._ProjectCallosum.Scripts.Matter
                 if (massFromGluon > 1.0)
                 {
                     // Comente esta linha depois de ver que funcionou!
-                     Debug.Log($"[Gluon] Gerando Massa: {massFromGluon:F1} MeV para {_me.Name}");
+                    // Debug.Log($"[Gluon] Gerando Massa: {massFromGluon:F1} MeV para {_me.Name}");
                 }
 
 
